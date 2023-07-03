@@ -36,6 +36,8 @@ import OttersImage from './Otters.jpg';
 
 import styles from './Dock.module.scss';
 export const Dock = () => {
+  const [showImage, setShowImage] = useState(false);
+  //
   const { openDrawer } = useDrawer();
   const { conference } = useConference();
   const { participants } = useParticipants();
@@ -108,16 +110,17 @@ export const Dock = () => {
           activeTooltipText={intl.formatMessage({ id: 'unmute' })}
         />
         <Space className={styles.spacer} />      
-        <IconButton
-          id="OpenDrawerButton"
-          testID="OpenDrawerButton"
-          icon="participants"
-          backgroundColor="transparent"
-          badge={participants.length}
-          onClick={() => openDrawer(SideDrawerContentTypes.PARTICIPANTS)}
-        >
-          <img src={OttersImage} alt="Otters" />
-          </IconButton>
+              <IconButton
+        id="OpenDrawerButton"
+        testID="OpenDrawerButton"
+        icon={showImage ? null : 'participants'} // Use null if you want to hide the default icon when the image is displayed
+        backgroundColor="transparent"
+        badge={participants.length}
+        onClick={() => setShowImage(!showImage)}
+      >
+        {showImage && <img src={OttersImage} alt="Otters" />} // Conditionally render the image based on the showImage state
+      </IconButton>
+
 
         <Space className={styles.spacer} />
         <LocalToggleVideoButton
