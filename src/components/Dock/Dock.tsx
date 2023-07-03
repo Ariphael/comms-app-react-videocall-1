@@ -89,7 +89,7 @@ export const Dock = () => {
       }}
     />
   );
-
+ 
   return (
     <Space testID="Dock" className={styles.dock} p="m">
       <Space id="CopyButton" className={styles.row} style={{ width: 330 }}>
@@ -119,6 +119,16 @@ export const Dock = () => {
           onLackOfBrowserPermissions={handleLackOfBrowserPermissions}
           onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
         />
+        <ScreenShareButton
+          defaultTooltipText={intl.formatMessage({ id: 'stopPresenting' })}
+          
+          onStartSharingAction={() => showSuccessNotification(intl.formatMessage({ id: 'presentingSuccessfully' }))}
+          onStopSharingAction={() => showSuccessNotification(intl.formatMessage({ id: 'screenSharingStopped' }))}
+          onLackOfBrowserPermissions={handleLackOfBrowserPermissions}
+          onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
+        />
+        <button onClick={() => alert('Sharing project')}>Share Project</button>
+
         {env('VITE_CONFERENCE_RECORDING') === 'true' && (
           <>
             <Space className={styles.spacer} />
