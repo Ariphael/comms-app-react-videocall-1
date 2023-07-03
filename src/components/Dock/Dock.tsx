@@ -34,7 +34,7 @@ import { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import styles from './Dock.module.scss';
-
+import OttersImage from 'Otters.jpg';
 export const Dock = () => {
   const { openDrawer } = useDrawer();
   const { conference } = useConference();
@@ -52,7 +52,7 @@ export const Dock = () => {
       removeAudioCaptureError?.();
     }
   }, [musicModeError]);
-
+  
   if (conference === null) {
     return null;
   }
@@ -90,12 +90,27 @@ export const Dock = () => {
       }}
     />
   );
-  const ImagePopupButton = () => {
-    const showImagePopup = () => {
-      const imageSource = 'Otters.jpg';
-      const popupWindow = window.open('', 'Image Popup', 'width=600,height=400');
-      popupWindow.document.write(`<img src="${imageSource}" />`);
-    };
+  //
+  const shareProject = () => {
+    const dialog = document.createElement('div');
+    dialog.style.display = 'flex';
+    dialog.style.alignItems = 'center';
+    dialog.style.justifyContent = 'center';
+    
+    const image = document.createElement('img');
+    image.src = OttersImage;
+    image.style.width = '300px';
+    image.style.height = '200px';
+    
+    dialog.appendChild(image);
+    
+    window.alert({
+      title: 'Sharing project',
+      content: dialog,
+      buttons: ['OK'],
+    });
+  };
+  //
   return (
     <Space testID="Dock" className={styles.dock} p="m">
       <Space id="CopyButton" className={styles.row} style={{ width: 330 }}>
@@ -114,8 +129,7 @@ export const Dock = () => {
         />
         <Space className={styles.spacer} />      
         <IconButton
-          defaultTooltipText={intl.formatMessage({ id: 'attendance' })}
-          activeTooltipText={intl.formatMessage({ id: 'closeattendance' })}
+          onClick={shareProject}
         />
         <Space className={styles.spacer} />
         <LocalToggleVideoButton
@@ -131,10 +145,7 @@ export const Dock = () => {
           onLackOfBrowserPermissions={handleLackOfBrowserPermissions}
           onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
         />  
-        <Space className={styles.spacer} />      
-        <IconButton 
-        onClick={showImagePopup}
-        />
+        
 
 
         {env('VITE_CONFERENCE_RECORDING') === 'true' && (
