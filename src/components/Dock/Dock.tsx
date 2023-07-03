@@ -92,7 +92,7 @@ export const Dock = () => {
   );
   const ImagePopupButton = () => {
     const showImagePopup = () => {
-      const imageSource = 'path/to/your/image.jpg';
+      const imageSource = 'Otters.jpg';
       const popupWindow = window.open('', 'Image Popup', 'width=600,height=400');
       popupWindow.document.write(`<img src="${imageSource}" />`);
     };
@@ -132,10 +132,9 @@ export const Dock = () => {
           onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
         />  
         <Space className={styles.spacer} />      
-        <IconButton onClick={showImagePopup}>
-          <img src="Otters.png" alt="Button Icon" />
-
-          </IconButton>
+        <IconButton 
+        onClick={showImagePopup}
+        />
 
 
         {env('VITE_CONFERENCE_RECORDING') === 'true' && (
