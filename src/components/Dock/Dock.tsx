@@ -32,9 +32,9 @@ import { splitMeetingAlias } from '@src/utils/misc';
 //import React, { useEffect } from 'react';
 import { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import React from 'react';
+import OttersImage from './Otters.jpg';
+
 import styles from './Dock.module.scss';
-import OttersImage from 'Otters.jpg';
 export const Dock = () => {
   const { openDrawer } = useDrawer();
   const { conference } = useConference();
@@ -90,27 +90,7 @@ export const Dock = () => {
       }}
     />
   );
-  //
-  const shareProject = () => {
-    const dialog = document.createElement('div');
-    dialog.style.display = 'flex';
-    dialog.style.alignItems = 'center';
-    dialog.style.justifyContent = 'center';
-    
-    const image = document.createElement('img');
-    image.src = OttersImage;
-    image.style.width = '300px';
-    image.style.height = '200px';
-    
-    dialog.appendChild(image);
-    
-    window.alert({
-      title: 'Sharing project',
-      content: dialog,
-      buttons: ['OK'],
-    });
-  };
-  //
+  
   return (
     <Space testID="Dock" className={styles.dock} p="m">
       <Space id="CopyButton" className={styles.row} style={{ width: 330 }}>
@@ -129,8 +109,16 @@ export const Dock = () => {
         />
         <Space className={styles.spacer} />      
         <IconButton
-          onClick={shareProject}
-        />
+          id="OpenDrawerButton"
+          testID="OpenDrawerButton"
+          icon="participants"
+          backgroundColor="transparent"
+          badge={participants.length}
+          onClick={() => openDrawer(SideDrawerContentTypes.PARTICIPANTS)}
+        >
+          <img src={OttersImage} alt="Otters" />
+          </IconButton>
+
         <Space className={styles.spacer} />
         <LocalToggleVideoButton
           defaultTooltipText={intl.formatMessage({ id: 'cameraOff' })}
