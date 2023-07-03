@@ -111,20 +111,21 @@ export const Dock = () => {
           activeTooltipText={intl.formatMessage({ id: 'unmute' })}
         />
         <Space className={styles.spacer} />      
-              <IconButton
-        id="OpenDrawerButton"
-        testID="OpenDrawerButton"
-        icon={showImage ? null : 'participants'} // Use null if you want to hide the default icon when the image is displayed
-        backgroundColor="transparent"
-        badge={participants.length}
-        onClick={() => setShowImage(!showImage)}
-      >
-        {showPopup && (
-          <div className={styles.popup}>
-            <img src={OttersImage} alt="Otters" />
-          </div>
-        )}
-      </IconButton>
+        <IconButton
+          id="OpenDrawerButton"
+          testID="OpenDrawerButton"
+          icon={showPopup ? null : 'participants'} // Use null if you want to hide the default icon when the popup is shown
+          backgroundColor="transparent"
+          badge={participants.length}
+          onClick={() => setShowPopup(!showPopup)}
+          >
+          {showPopup && (
+            <div className={styles.popup}>
+              <img src={OttersImage} alt="Otters" />
+            </div>
+          )}
+          </IconButton>
+
 
 
         <Space className={styles.spacer} />
