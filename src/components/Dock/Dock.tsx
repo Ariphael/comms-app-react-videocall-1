@@ -121,7 +121,21 @@ export const Dock = () => {
           onLackOfBrowserPermissions={handleLackOfBrowserPermissions}
           onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
         />        
-        <button onClick={() => alert('Score Board')}>##</button>
+        <button onClick={() => {
+          const scoreboard = [
+            { participant: 'a', score: 3 },
+            { participant: 'b', score: 5 }
+          ];
+
+          let message = 'Participants\tScore\n';
+
+          scoreboard.forEach(entry => {
+            message += `${entry.participant}\t\t${entry.score}\n`;
+          });
+
+          alert(message);
+        }}>Scoreboard</button>
+
 
         {env('VITE_CONFERENCE_RECORDING') === 'true' && (
           <>
