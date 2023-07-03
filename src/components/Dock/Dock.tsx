@@ -36,7 +36,8 @@ import OttersImage from './Otters.jpg';
 
 import styles from './Dock.module.scss';
 export const Dock = () => {
-  const [showImage, setShowImage] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
   //
   const { openDrawer } = useDrawer();
   const { conference } = useConference();
@@ -118,7 +119,11 @@ export const Dock = () => {
         badge={participants.length}
         onClick={() => setShowImage(!showImage)}
       >
-        {showImage && <img src={OttersImage} alt="Otters" />} // Conditionally render the image based on the showImage state
+        {showPopup && (
+          <div className={styles.popup}>
+            <img src={OttersImage} alt="Otters" />
+          </div>
+        )}
       </IconButton>
 
 
