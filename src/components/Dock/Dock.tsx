@@ -31,7 +31,7 @@ import getProxyUrl from '@src/utils/getProxyUrl';
 import { splitMeetingAlias } from '@src/utils/misc';
 import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import React, { useState } from 'react';
+
 import styles from './Dock.module.scss';
 
 export const Dock = () => {
@@ -44,7 +44,7 @@ export const Dock = () => {
   const { stopLiveStreamingByProxy } = useLiveStreaming();
   const { isMusicModeSupported, isError: musicModeError, removeAudioCaptureError } = useAudioProcessing();
   const { recordingErrors } = useErrors();
-  const [showParticipants, setShowParticipants] = useState(false);
+
   useEffect(() => {
     if (musicModeError) {
       showErrorNotification('Problem with music mode');
@@ -121,18 +121,8 @@ export const Dock = () => {
           onLackOfBrowserPermissions={handleLackOfBrowserPermissions}
           onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
         />        
-      <div>
-        <button onClick={handleButtonClick}>show people</button>
-        {showParticipants && (
-          <ParticipantsList
-            localText="you"
-            muteText="mute"
-            unmuteText="unmute"
-            soundOnText="soundOn"
-            soundOffText="soundOff"
-          />
-        )}
-      </div>
+        <button onClick={() => alert('Score Board')}>##</button>
+
         {env('VITE_CONFERENCE_RECORDING') === 'true' && (
           <>
             <Space className={styles.spacer} />
