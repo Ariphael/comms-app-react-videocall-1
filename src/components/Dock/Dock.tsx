@@ -31,7 +31,7 @@ import getProxyUrl from '@src/utils/getProxyUrl';
 import { splitMeetingAlias } from '@src/utils/misc';
 import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-
+import React, { useState } from 'react';
 import styles from './Dock.module.scss';
 
 export const Dock = () => {
@@ -44,7 +44,7 @@ export const Dock = () => {
   const { stopLiveStreamingByProxy } = useLiveStreaming();
   const { isMusicModeSupported, isError: musicModeError, removeAudioCaptureError } = useAudioProcessing();
   const { recordingErrors } = useErrors();
-
+  const [showParticipants, setShowParticipants] = useState(false);
   useEffect(() => {
     if (musicModeError) {
       showErrorNotification('Problem with music mode');
@@ -78,7 +78,7 @@ export const Dock = () => {
   const renderDataInput = (isVisible: boolean, close: () => void) => (
     <LiveStreamingModal isOpen={isVisible} closeModal={close} />
   );
-
+  
   const renderStopStreamingModal = (isVisible: boolean, accept: () => void, cancel: () => void) => (
     <StopLiveStreamingModal
       isOpen={isVisible}
@@ -89,7 +89,9 @@ export const Dock = () => {
       }}
     />
   );
- 
+  const handleButtonClick = () => {
+    setShowParticipants(!showParticipants);
+  };
   return (
     <Space testID="Dock" className={styles.dock} p="m">
       <Space id="CopyButton" className={styles.row} style={{ width: 330 }}>
@@ -118,17 +120,19 @@ export const Dock = () => {
           onStopSharingAction={() => showSuccessNotification(intl.formatMessage({ id: 'screenSharingStopped' }))}
           onLackOfBrowserPermissions={handleLackOfBrowserPermissions}
           onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
-        />
-        <ScreenShareButton
-          defaultTooltipText={intl.formatMessage({ id: 'stopPresenting' })}
-          
-          onStartSharingAction={() => showSuccessNotification(intl.formatMessage({ id: 'presentingSuccessfully' }))}
-          onStopSharingAction={() => showSuccessNotification(intl.formatMessage({ id: 'screenSharingStopped' }))}
-          onLackOfBrowserPermissions={handleLackOfBrowserPermissions}
-          onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
-        />
-        <button onClick={() => alert('Sharing project')}>Share Project</button>
-
+        />        
+      <div>
+        <button onClick={handleButtonClick}>show people</button>
+        {showParticipants && (
+          <ParticipantsList
+            localText="you"
+            muteText="mute"
+            unmuteText="unmute"
+            soundOnText="soundOn"
+            soundOffText="soundOff"
+          />
+        )}
+      </div>
         {env('VITE_CONFERENCE_RECORDING') === 'true' && (
           <>
             <Space className={styles.spacer} />
