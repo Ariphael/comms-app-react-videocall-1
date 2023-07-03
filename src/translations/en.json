@@ -32,7 +32,7 @@
   "deviceInitialization": "Waiting for camera and microphone to initialize ...",
   "echoOptionDsc": "Turn on echo canceling mode to avoid echoing when speaking.",
   "echoOptionHeadline": "Echo cancellation",
-  "enterName": "Enter your name",
+  "enterName": "Enter your names plz",
   "enterNameDisclaimer": "This name will be visible to meeting participants",
   "genericValidation": "This value must have {minChar}-30 characters",
   "github": "Github source code",
