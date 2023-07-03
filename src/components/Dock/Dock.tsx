@@ -112,11 +112,13 @@ export const Dock = () => {
         />
         <Space className={styles.spacer} />      
         <IconButton
+        
           id="OpenDrawerButton"
           testID="OpenDrawerButton"
           icon={showPopup ? null : 'participants'} // Use null if you want to hide the default icon when the popup is shown
           backgroundColor="transparent"
           badge={participants.length}
+          defaultTooltipText={intl.formatMessage({ id: 'WhiteBoard' })}
           onClick={() => setShowPopup(!showPopup)}
           >
           {showPopup && (
