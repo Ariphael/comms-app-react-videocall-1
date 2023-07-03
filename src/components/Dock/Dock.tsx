@@ -32,7 +32,7 @@ import { splitMeetingAlias } from '@src/utils/misc';
 //import React, { useEffect } from 'react';
 import { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
-
+import React from 'react';
 import styles from './Dock.module.scss';
 
 export const Dock = () => {
@@ -90,9 +90,12 @@ export const Dock = () => {
       }}
     />
   );
-  const handleButtonClick = () => {
-    setShowParticipants(!showParticipants);
-  };
+  const ImagePopupButton = () => {
+    const showImagePopup = () => {
+      const imageSource = 'path/to/your/image.jpg';
+      const popupWindow = window.open('', 'Image Popup', 'width=600,height=400');
+      popupWindow.document.write(`<img src="${imageSource}" />`);
+    };
   return (
     <Space testID="Dock" className={styles.dock} p="m">
       <Space id="CopyButton" className={styles.row} style={{ width: 330 }}>
@@ -129,10 +132,10 @@ export const Dock = () => {
           onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
         />  
         <Space className={styles.spacer} />      
-        <IconButton
-          defaultTooltipText={intl.formatMessage({ id: 'scoreboard' })}
-          activeTooltipText={intl.formatMessage({ id: 'closescoreboard' })}
-        />
+        <IconButton onClick={showImagePopup}>
+          <img src="Otters.png" alt="Button Icon" />
+
+          </IconButton>
 
 
         {env('VITE_CONFERENCE_RECORDING') === 'true' && (
