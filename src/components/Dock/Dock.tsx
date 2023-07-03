@@ -29,7 +29,8 @@ import { SideDrawerContentTypes } from '@src/context/SideDrawerContext';
 import { env } from '@src/utils/env';
 import getProxyUrl from '@src/utils/getProxyUrl';
 import { splitMeetingAlias } from '@src/utils/misc';
-import React, { useEffect } from 'react';
+//import React, { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import styles from './Dock.module.scss';
@@ -121,22 +122,9 @@ export const Dock = () => {
           onLackOfBrowserPermissions={handleLackOfBrowserPermissions}
           onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
         />        
-        <IconButton
-         onClick={() => {
-          const scoreboard = [
-            { participant: 'a', score: 3 },
-            { participant: 'b', score: 5 }
-          ];
-        
-          let message = 'Participants\tScore\n';
-        
-          scoreboard.forEach(entry => {
-            message += `${entry.participant}\t\t${entry.score}\n`;
-          });
-        
-          alert(message);
-        }}
-        />
+        <IconButton onClick={this.handleClick}>
+        <img src="otters.jpg" alt="Image" />
+        </IconButton>
 
 
         {env('VITE_CONFERENCE_RECORDING') === 'true' && (
