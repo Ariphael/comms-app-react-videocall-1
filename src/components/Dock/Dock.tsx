@@ -56,7 +56,7 @@ export const Dock = () => {
   if (conference === null) {
     return null;
   }
-
+  
   const isChrome = navigator.userAgent.match(/chrome|chromium|crios/i);
 
   const handleLackOfBrowserPermissions = () => {
@@ -103,10 +103,16 @@ export const Dock = () => {
           </Text>
         </Space>
       </Space>
+      
       <Space id="Dock" className={styles.row}>
         <LocalToggleAudioButton
           defaultTooltipText={intl.formatMessage({ id: 'mute' })}
           activeTooltipText={intl.formatMessage({ id: 'unmute' })}
+        />
+        <Space className={styles.spacer} />      
+        <IconButton
+          defaultTooltipText={intl.formatMessage({ id: 'attendance' })}
+          activeTooltipText={intl.formatMessage({ id: 'closeattendance' })}
         />
         <Space className={styles.spacer} />
         <LocalToggleVideoButton
@@ -121,10 +127,12 @@ export const Dock = () => {
           onStopSharingAction={() => showSuccessNotification(intl.formatMessage({ id: 'screenSharingStopped' }))}
           onLackOfBrowserPermissions={handleLackOfBrowserPermissions}
           onError={() => showErrorNotification(intl.formatMessage({ id: 'screenSharingLimit' }))}
-        />        
-        <IconButton onClick={this.handleClick}>
-        <img src="otters.jpg" alt="Image" />
-        </IconButton>
+        />  
+        <Space className={styles.spacer} />      
+        <IconButton
+          defaultTooltipText={intl.formatMessage({ id: 'scoreboard' })}
+          activeTooltipText={intl.formatMessage({ id: 'closescoreboard' })}
+        />
 
 
         {env('VITE_CONFERENCE_RECORDING') === 'true' && (
