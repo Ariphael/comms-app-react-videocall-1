@@ -137,7 +137,7 @@ export const Dock = () => {
             id="OpenDrawerButton"
             testID="OpenDrawerButton"
             backgroundColor="purple"
-            badge={"xp"}
+            badge={"Quiz"}
             variant = 'circle'
           >
         </IconButton>
