@@ -132,7 +132,13 @@ export const Dock = () => {
             </div>
           )}
           </IconButton>
-
+          <IconButton
+            id="OpenDrawerButton"
+            testID="OpenDrawerButton"
+            backgroundColor="transparent"
+            defaultTooltipText={intl.formatMessage({ id: 'Grant xp' })}
+          >
+        </IconButton>
 
 
         <Space className={styles.spacer} />
