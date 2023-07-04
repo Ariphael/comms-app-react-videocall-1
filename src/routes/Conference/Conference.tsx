@@ -326,8 +326,8 @@ export const Conference = () => {
                   pl={isDesktop && isPresentationActive ? 'm' : isTablet && isLandscape && isPresentationActive && 'xs'}
                 >
                   <ParticipantsGrid
-                    //localText={intl.formatMessage({ id: 'you' })}
-                    localText={intl.formatMessage({ id: 'str' })}
+                    localText={intl.formatMessage({ id: 'you' })}
+
                     testID="ParticipantsGrid"
                     additionalContainerStyle={
                       isOneParticipant && !isDesktop

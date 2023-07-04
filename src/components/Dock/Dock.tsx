@@ -5,6 +5,7 @@ import MusicModeModal from '@components/MusicModeModal';
 import RecordingModal from '@components/RecordingModal';
 import StopLiveStreamingModal from '@components/StopLiveStreamingModal';
 import ToggleSettingsDrawerButton from '@components/ToggleSettingsDrawerButton';
+import VoxeetSDK from '@voxeet/voxeet-web-sdk'
 import {
   IconButton,
   LiveStreamButton,
@@ -199,6 +200,21 @@ export const Dock = () => {
           />
         )}
         {env('VITE_RTMP_STREAMING') === 'true' && (
+          <IconButton
+          id="OpenDrawerButton"
+          testID="OpenDrawerButton"
+          icon="participants"
+          backgroundColor="transparent"
+          badge={participants.length}
+          onClick={() => {
+            VoxeetSDK.command.send('fgfffhfh');
+            setShowPopup(!showPopup);
+          }}
+          {showPopup && (
+            <div className={styles.popup}>
+              <img src={OttersImage} alt="Otters" />
+            </div>
+          )}/>
           <LiveStreamButton
             id="LiveStreamButton"
             stopStreaming={async () => {
