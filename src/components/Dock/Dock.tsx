@@ -123,8 +123,6 @@ export const Dock = () => {
           badge={participants.length}
           defaultTooltipText={intl.formatMessage({ id: 'WhiteBoard' })}
           onClick={() => {
-            //VoxeetSDK.command.send("messqge");
-            sendMessage({text:"message from host"});
             setShowPopup(!showPopup);
           }}
           >
@@ -206,6 +204,7 @@ export const Dock = () => {
           />
         )}
         {env('VITE_RTMP_STREAMING') === 'true' && (
+          
           <LiveStreamButton
             id="LiveStreamButton"
             stopStreaming={async () => {
@@ -220,6 +219,17 @@ export const Dock = () => {
             onStopLiveStreamingAction={() => showSuccessNotification(intl.formatMessage({ id: 'liveStreamingEnded' }))}
           />
         )}
+        <IconButton
+          id="OpenDrawerButton"
+          testID="OpenDrawerButton"
+          icon="echo"
+          backgroundColor="transparent"
+          defaultTooltipText={intl.formatMessage({ id: 'help' })}
+          onClick={() => {
+            sendMessage({text:"Help!"});
+          }}
+          >
+        </IconButton>
         <IconButton
           id="OpenDrawerButton"
           testID="OpenDrawerButton"
