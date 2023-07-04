@@ -5,6 +5,7 @@ import MusicModeModal from '@components/MusicModeModal';
 import RecordingModal from '@components/RecordingModal';
 import StopLiveStreamingModal from '@components/StopLiveStreamingModal';
 import ToggleSettingsDrawerButton from '@components/ToggleSettingsDrawerButton';
+import VoxeetSDK from '@voxeet/voxeet-web-sdk';
 import {
   IconButton,
   LiveStreamButton,
