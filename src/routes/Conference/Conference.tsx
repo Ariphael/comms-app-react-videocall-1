@@ -35,6 +35,8 @@ import {
   Modal,
   useCommsContext,
   isEdgeOrChromeBrowser,
+  useMessage,
+  useNotifications,
 } from '@dolbyio/comms-uikit-react';
 import useConferenceCreate from '@hooks/useConferenceCreate';
 import { usePageRefresh } from '@hooks/usePageRefresh';
@@ -93,6 +95,8 @@ export const Conference = () => {
   const T2MessageRef = useRef('This video call will end in two minutes');
   const { isLiveStreamingModeActive, isLocalUserLiveStreamingOwner, stopLiveStreamingByProxy } = useLiveStreaming();
   const navigate = useNavigate();
+  const {message} = useMessage();
+  const {showNeutralNotification} = useNotifications();
 
   const cleanup = useCallback(async () => {
     if (isLiveStreamingModeActive && isLocalUserLiveStreamingOwner) {
@@ -175,6 +179,11 @@ export const Conference = () => {
       navigate(`${Routes.ConferenceLeft}${window.location.search}`, { replace: true });
     }
   }, [cleanup, conferenceStatus, navigate]);
+
+  useEffect(() => {
+    showNeutralNotification(JSON.stringify(message), {icon: 'chat'} )
+    console.log(">>>>>>>", message);
+  }, [message]);
 
   const openBottomDrawer = () => {
     setIsBottomDrawerOpen(true);
