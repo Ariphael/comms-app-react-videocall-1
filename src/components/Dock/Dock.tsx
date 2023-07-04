@@ -118,9 +118,9 @@ export const Dock = () => {
         
           id="OpenDrawerButton"
           testID="OpenDrawerButton"
-          icon={showPopup ? null : 'participants'} // Use null if you want to hide the default icon when the popup is shown
+          badge={"WhiteBoard"}
           backgroundColor="transparent"
-          badge={participants.length}
+          variant = 'rectangular'
           defaultTooltipText={intl.formatMessage({ id: 'WhiteBoard' })}
           onClick={() => {
             setShowPopup(!showPopup);
@@ -137,8 +137,8 @@ export const Dock = () => {
             id="OpenDrawerButton"
             testID="OpenDrawerButton"
             backgroundColor="purple"
-            badge={"10"}
-            defaultTooltipText={intl.formatMessage({ id: 'Grant xp' })}
+            badge={"xp"}
+            variant = 'circle'
           >
         </IconButton>
 
