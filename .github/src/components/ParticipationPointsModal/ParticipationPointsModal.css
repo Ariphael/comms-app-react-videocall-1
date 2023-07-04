@@ -1,0 +1,22 @@
+.LeaderboardTable {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+}
+
+table {
+  width: 800px;
+  height: 200px;
+}
+
+th {
+  border-bottom: 1px solid black;
+  color: white;
+}
+
+td {
+  text-align: center;
+  color: white;
+}
