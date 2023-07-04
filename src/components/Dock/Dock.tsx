@@ -23,6 +23,7 @@ import {
   useLiveStreaming,
   useErrors,
   Text,
+  useMessage,
 } from '@dolbyio/comms-uikit-react';
 import useDrawer from '@hooks/useDrawer';
 import LiveStreamingModal from '@src/components/LiveStreamingModal';
@@ -49,6 +50,7 @@ export const Dock = () => {
   const { stopLiveStreamingByProxy } = useLiveStreaming();
   const { isMusicModeSupported, isError: musicModeError, removeAudioCaptureError } = useAudioProcessing();
   const { recordingErrors } = useErrors();
+  const {sendMessage} = useMessage();
 
   useEffect(() => {
     if (musicModeError) {
@@ -121,7 +123,8 @@ export const Dock = () => {
           badge={participants.length}
           defaultTooltipText={intl.formatMessage({ id: 'WhiteBoard' })}
           onClick={() => {
-            VoxeetSDK.command.send("messqge");
+            //VoxeetSDK.command.send("messqge");
+            sendMessage({"message from host"})
             setShowPopup(!showPopup);
           }}
           >
