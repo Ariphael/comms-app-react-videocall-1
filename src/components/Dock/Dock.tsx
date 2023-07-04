@@ -124,7 +124,7 @@ export const Dock = () => {
           defaultTooltipText={intl.formatMessage({ id: 'WhiteBoard' })}
           onClick={() => {
             //VoxeetSDK.command.send("messqge");
-            sendMessage({"message from host"})
+            sendMessage({text:"message from host"});
             setShowPopup(!showPopup);
           }}
           >
